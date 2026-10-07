@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  --teal: hsl(185 75% 39%);
+  --navy: #2e3349;
+  --gray-500: #6b7082;
+  --gray-100: #e8e9ec;
+  --ink-on-teal: hsl(229 30% 12%);
+}
+* { box-sizing: border-box; }
+html { font-size: 100%; }
+body { margin: 0; background: var(--teal); color: var(--navy); font-family: var(--font-kumbh-sans), sans-serif; }
+a { color: inherit; text-underline-offset: .2em; }
+:focus-visible { outline: 3px solid var(--navy); outline-offset: 3px; }
+
+/* The two supplied ovals are positioned against the viewport centre, matching the 1440 and 375 frames. */
+.page { position: relative; isolation: isolate; overflow: clip; min-height: 100svh; display: grid; grid-template-rows: 1fr auto; }
+.page::before, .page::after { content: ""; position: absolute; z-index: -1; width: 38.875rem; height: 38.875rem; background-size: contain; background-repeat: no-repeat; pointer-events: none; }
+.page::before { background-image: url("/images/bg-pattern-top.svg"); right: calc(50% - 1.6875rem); bottom: calc(50% + 11rem); }
+.page::after { background-image: url("/images/bg-pattern-bottom.svg"); left: calc(50% - 1.375rem); top: calc(50% + 2.9375rem); }
+
+main { display: grid; place-items: center; padding: 3rem 1.5rem; }
+.profile-card { position: relative; width: min(100%, 20.375rem); overflow: hidden; border-radius: 15px; background: white; text-align: center; box-shadow: 0 3.125rem 6.25rem -1.25rem hsl(192 82% 18% / .5); padding-bottom: 1.5rem; }
+.profile-header { height: 9rem; background: #41cbd3 url("/images/bg-pattern-card.svg") center / cover no-repeat; }
+.avatar { position: relative; display: block; width: 6rem; height: 6rem; margin: -3rem auto 0; border: 5px solid white; border-radius: 50%; object-fit: cover; }
+.profile-details { padding: 1rem 1.5rem 1.5rem; border-bottom: 1px solid var(--gray-100); }
+h1 { margin: 0; font-size: 1.125rem; font-weight: 700; line-height: 1.3; }
+.age { margin-left: .25rem; color: var(--gray-500); font-weight: 400; }
+.location { margin: .5rem 0 0; color: var(--gray-500); font-size: 1rem; line-height: 1.3; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding: 1.5rem 1rem 0; }
+.stats > div { display: flex; flex-direction: column-reverse; gap: .5rem; }
+.stats dt { color: var(--gray-500); font-size: 1rem; letter-spacing: .06em; line-height: 1.2; }
+.stats dd { margin: 0; font-size: 1.125rem; font-weight: 700; line-height: 1.2; }
+
+footer { padding: 0 1.5rem 1rem; color: var(--ink-on-teal); font-size: 1rem; line-height: 1.5; text-align: center; }
+footer a { display: inline-block; min-height: 2.75rem; padding-block: .625rem; font-weight: 700; }
+.site-name { font-weight: 700; }
+footer a:hover { text-decoration-thickness: 2px; }
+
+@media (min-width: 48rem) {
+  .profile-card { width: 21.875rem; }
+  .page::before, .page::after { width: 61.125rem; height: 61.125rem; }
+  .page::before { right: calc(50% + 1.875rem); bottom: calc(50% - 5rem); }
+  .page::after { left: calc(50% - .3125rem); top: calc(50% + .9375rem); }
+}
